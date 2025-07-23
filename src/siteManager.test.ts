@@ -80,12 +80,16 @@ describe('SiteManager', () => {
                     },
                 },
             },
+            analyticsClient: {
+                sendTrackEvent: jest.fn(),
+            },
         } as unknown as typeof Container;
 
         // Replace the real Container with our mock
         jest.spyOn(Container, 'credentialManager', 'get').mockReturnValue(mockCredentialManager);
         jest.spyOn(Container, 'bitbucketContext', 'get').mockReturnValue(mockContainer.bitbucketContext);
         jest.spyOn(Container, 'config', 'get').mockReturnValue(mockContainer.config);
+        jest.spyOn(Container, 'analyticsClient', 'get').mockReturnValue(mockContainer.analyticsClient);
 
         // Create a SiteManager instance
         siteManager = new SiteManager(mockGlobalStore);

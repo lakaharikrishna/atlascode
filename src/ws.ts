@@ -2,6 +2,8 @@ import * as http from 'http';
 import { Disposable } from 'vscode';
 import { server } from 'websocket';
 
+import { safeSplice } from './util/safeSplice';
+
 export class UIWebsocket implements Disposable {
     private _port: number;
     private _srv: http.Server | undefined;
@@ -48,7 +50,7 @@ export class UIWebsocket implements Disposable {
             connection.on('close', (code: number, desc: string) => {
                 console.log(new Date() + ` Peer ${connection.remoteAddress} disconnected.`);
                 // remove user from the list of connected clients
-                clients.splice(index, 1);
+                safeSplice(clients, index, 1, { file: 'ws.ts', function: 'close' });
             });
         });
     }

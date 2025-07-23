@@ -15,6 +15,7 @@ import {
 import { CredentialManager } from './atlclients/authStore';
 import { configuration } from './config/configuration';
 import { Container } from './container';
+import { safeSplice } from './util/safeSplice';
 
 export type SitesAvailableUpdateEvent = {
     sites: DetailedSiteInfo[];
@@ -102,7 +103,7 @@ export class SiteManager extends Disposable {
         if (allSites) {
             const oldSiteIndex = allSites.findIndex((site) => site.id === oldSite.id && site.userId === oldSite.userId);
             if (oldSiteIndex !== -1) {
-                allSites.splice(oldSiteIndex, 1, newSite);
+                safeSplice(allSites, oldSiteIndex, 1, { file: 'siteManager.ts', function: 'updateSite' }, newSite);
 
                 this._globalStore.update(`${newSite.product.key}${SitesSuffix}`, allSites);
                 this._sitesAvailable.set(newSite.product.key, allSites);
@@ -253,7 +254,7 @@ export class SiteManager extends Disposable {
             const foundIndex = sites.findIndex((availableSite) => availableSite.host === site.host);
             if (foundIndex > -1) {
                 const deletedSite = sites[foundIndex];
-                sites.splice(foundIndex, 1);
+                safeSplice(sites, foundIndex, 1, { file: 'siteManager.ts', function: 'removeSite' });
                 this._globalStore.update(`${site.product.key}${SitesSuffix}`, sites);
                 this._sitesAvailable.set(site.product.key, sites);
                 this._onDidSitesAvailableChange.fire({ sites: sites, product: site.product });

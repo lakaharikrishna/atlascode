@@ -46,6 +46,7 @@ import { parseJiraIssueKeys } from '../jira/issueKeyParser';
 import { transitionIssue } from '../jira/transitionIssue';
 import { Logger } from '../logger';
 import { iconSet, Resources } from '../resources';
+import { safeSplice } from '../util/safeSplice';
 import { OnJiraEditedRefreshDelay } from '../util/time';
 import { getJiraIssueUri } from '../views/jira/treeViews/utils';
 import { NotificationManagerImpl } from '../views/notifications/notificationManager';
@@ -339,9 +340,11 @@ export class JiraIssueWebview
                                     msg.restriction,
                                 );
                                 const comments: Comment[] = this._editUIData.fieldValues['comment'].comments;
-                                comments.splice(
+                                safeSplice(
+                                    comments,
                                     comments.findIndex((value) => value.id === msg.commentId),
                                     1,
+                                    { file: 'jiraIssueWebview.ts', function: 'comment' },
                                     res,
                                 );
                             } else {
@@ -371,9 +374,11 @@ export class JiraIssueWebview
                             const client = await Container.clientManager.jiraClient(msg.issue.siteDetails);
                             await client.deleteComment(msg.issue.key, msg.commentId);
                             const comments: Comment[] = this._editUIData.fieldValues['comment'].comments;
-                            comments.splice(
+                            safeSplice(
+                                comments,
                                 comments.findIndex((value) => value.id === msg.commentId),
                                 1,
+                                { file: 'jiraIssueWebview.ts', function: 'deleteComment' },
                             );
 
                             this.postMessage({
@@ -624,7 +629,10 @@ export class JiraIssueWebview
                                 (user: User) => user.accountId === msg.watcher.accountId,
                             );
                             if (foundIndex > -1) {
-                                this._editUIData.fieldValues['watches'].watchers.splice(foundIndex, 1);
+                                safeSplice(this._editUIData.fieldValues['watches'].watchers, foundIndex, 1, {
+                                    file: 'jiraIssueWebview.ts',
+                                    function: 'removeWatcher',
+                                });
                             }
 
                             if (msg.watcher.accountId === this._currentUser.accountId) {
@@ -719,7 +727,10 @@ export class JiraIssueWebview
                                 (user: User) => user.accountId === voterAccountId,
                             );
                             if (foundIndex > -1) {
-                                this._editUIData.fieldValues['votes'].voters.splice(foundIndex, 1);
+                                safeSplice(this._editUIData.fieldValues['votes'].voters, foundIndex, 1, {
+                                    file: 'jiraIssueWebview.ts',
+                                    function: 'removeVote',
+                                });
                             }
 
                             this._editUIData.fieldValues['votes'].hasVoted = false;
