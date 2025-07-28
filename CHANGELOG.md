@@ -18,7 +18,6 @@
 - Fixed a bug when Save site button is enabled without valid credentials
 - Fixed a bug where after creating a new Jira issue, the issue would not appear in the sidebar
 - Fixed an unexpected status dropdown behavior when user doesn't have enough permissions to change it.
-- Moved source code and removed following dependencies "@atlassianlabs/guipi-core-components", "@atlassianlabs/guipi-core-controller", "@atlassianlabs/guipi-jira-components"
 
 ## What's new in 3.8.6
 
