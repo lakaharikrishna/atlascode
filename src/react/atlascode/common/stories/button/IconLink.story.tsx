@@ -4,7 +4,7 @@ import * as React from 'react';
 import { IconLink } from '../../button/IconLink';
 
 export default {
-    title: `atlascode/common/button/IconLink`,
+    title: 'atlascode/common/button/IconLink',
 };
 
 export const noIcon = () => {

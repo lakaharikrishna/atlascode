@@ -27,3 +27,5 @@ resources/rovo-dev/*
 
 !.vscode/launch.json.example
 /.idea/
+
+storybook-static/

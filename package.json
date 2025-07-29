@@ -74,7 +74,9 @@
         "watch": "concurrently -r \"npm:watch:*\"",
         "watch:extension": "WATCH=true webpack --mode development --config webpack.react.dev.js --progress --watch",
         "watch:react": "WATCH=true webpack --mode development --config webpack.extension.dev.js --progress --watch",
-        "dev": "concurrently -r npm:watch:extension npm:watch:react"
+        "dev": "concurrently -r npm:watch:extension npm:watch:react",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
     },
     "contributes": {
         "keybindings": [
@@ -1425,8 +1427,19 @@
         "websocket": "^1.0.35"
     },
     "devDependencies": {
+        "@babel/core": "^7.28.0",
+        "@babel/preset-env": "^7.28.0",
+        "@babel/preset-react": "^7.27.1",
+        "@babel/preset-typescript": "^7.27.1",
         "@jest/globals": "^30.0.2",
         "@playwright/test": "1.53.0",
+        "@storybook/addon-actions": "^8.6.14",
+        "@storybook/addon-knobs": "^8.0.1",
+        "@storybook/addon-links": "^8.6.14",
+        "@storybook/addon-storysource": "^8.6.14",
+        "@storybook/react": "^8.6.14",
+        "@storybook/react-webpack5": "^8.6.14",
+        "@storybook/test": "^8.6.14",
         "@testing-library/react": "^12.1.5",
         "@types/autosuggest-highlight": "^3.2.3",
         "@types/express": "^5.0.2",
@@ -1451,6 +1464,7 @@
         "ajv": "^8.17.1",
         "ajv-formats": "^3.0.1",
         "autoprefixer": "^10.4.20",
+        "babel-loader": "^8.4.1",
         "concurrently": "^9.1.2",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
@@ -1478,6 +1492,7 @@
         "postcss-preset-env": "^10.2.0",
         "prettier": "^3.5.3",
         "source-map-loader": "^5.0.0",
+        "storybook": "^8.6.14",
         "terser-webpack-plugin": "^5.3.0",
         "ts-jest": "^29.4.0",
         "ts-loader": "^9.5.2",

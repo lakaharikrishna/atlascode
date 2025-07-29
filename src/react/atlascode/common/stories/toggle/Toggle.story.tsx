@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { ToggleWithLabel } from '../../toggle/ToggleWithLabel';
 export default {
-    title: `atlascode/common/toggle/ToggleWithLabel`,
+    title: 'atlascode/common/toggle/ToggleWithLabel',
 };
 
 export const switchControl = () => {

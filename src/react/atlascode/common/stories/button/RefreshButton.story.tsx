@@ -4,7 +4,7 @@ import * as React from 'react';
 import { RefreshButton } from '../../button/RefreshButton';
 
 export default {
-    title: `atlascode/common/button/RefreshButton`,
+    title: 'atlascode/common/button/RefreshButton',
 };
 
 export const notLoading = () => {

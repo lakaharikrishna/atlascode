@@ -6,7 +6,7 @@ import { InlineTextEditorList } from '../../list/InlineTextEditorList';
 import { ToggleWithLabel } from '../../toggle/ToggleWithLabel';
 
 export default {
-    title: `atlascode/common/list/InlineTextEditorList`,
+    title: 'atlascode/common/list/InlineTextEditorList',
 };
 
 export const empty = () => {
