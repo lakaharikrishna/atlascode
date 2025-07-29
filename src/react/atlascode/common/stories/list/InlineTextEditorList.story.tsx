@@ -1,4 +1,4 @@
-import { Box, Button, Grid, GridJustification, MenuItem, TextField } from '@material-ui/core';
+import { Box, Button, Grid, GridJustification, MenuItem, Switch, TextField } from '@material-ui/core';
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 
@@ -94,11 +94,8 @@ export const AlignButtons = () => {
             <Grid item>
                 <ToggleWithLabel
                     label="Reverse Buttons"
-                    color="primary"
-                    size="small"
-                    checked={reverseButtons}
-                    value="reversed"
-                    onChange={handleReverse}
+                    variant="body2"
+                    control={<Switch size="small" checked={reverseButtons} value="reversed" onChange={handleReverse} />}
                 />
             </Grid>
             <Grid item>
