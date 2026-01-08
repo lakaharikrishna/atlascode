@@ -1,0 +1,21 @@
+{
+    "HES": {
+        "host": "35.200.222.22",
+        "port": 30678
+    },
+    "MYSQL": {
+        "connection": {
+            "host": "35.244.43.59",
+            "port": 3306
+        },
+        "credentials": {
+            "database": "FUOTA_TESTING",
+            "username": "root",
+            "password": "P@ssw0rdisN0P@ssw0rd"
+        }
+    },
+    "MQTT": {
+        "host": "127.0.0.1",
+        "port": 30685
+    }
+}
