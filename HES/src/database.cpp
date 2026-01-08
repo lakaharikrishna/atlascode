@@ -27,7 +27,7 @@ struct MysqlThreadGuard
     {
         if (!mysql_thread_initialized)
         {
-            mysql_thread_init();
+            // mysql_thread_init();
             mysql_thread_initialized = true;
             owner = true;
         }
@@ -36,7 +36,7 @@ struct MysqlThreadGuard
     {
         if (owner)
         {
-            mysql_thread_end();
+            // mysql_thread_end();
             mysql_thread_initialized = false;
         }
     }
